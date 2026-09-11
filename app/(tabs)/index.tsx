@@ -1,11 +1,11 @@
-import "@/global.css"
+import "@/global.css";
 import { Text, View } from "react-native";
-import {Link} from "expo-router";
-import { Pressable} from "react-native";
-
+import { Link } from "expo-router";
+import { Pressable } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 export default function App() {
   return (
-      <View className="flex-1 items-center justify-center bg-background">
+      <SafeAreaView className="flex-1 bg-background p-5">
         <Text className="text-xl font-bold text-success">
           Welcome to Nativewind!
         </Text>
@@ -44,6 +44,6 @@ export default function App() {
               Claude Max Subscription
           </Link>
 
-      </View>
+      </SafeAreaView>
   );
 }

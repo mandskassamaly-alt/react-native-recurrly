@@ -1,11 +1,12 @@
-import {View, Text} from 'react-native'
-import React from 'react'
+import "@/global.css";
+import { View, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Insights = () => {
     return (
-        <View>
+        <SafeAreaView>
             <Text>Insights</Text>
-        </View>
+        </SafeAreaView>
     )
 }
 export default Insights
