@@ -1,5 +1,7 @@
 import "@/global.css";
-import {FlatList, Image, Text, View} from "react-native";
+import { useAuth } from "@clerk/expo";
+import { useUser } from "@clerk/expo";
+import {FlatList, Image, Pressable, Text, View} from "react-native";
 import images  from '@/constants/images';
 import { SafeAreaView } from "react-native-safe-area-context";
 import {HOME_BALANCE, HOME_SUBSCRIPTIONS, HOME_USER, UPCOMING_SUBSCRIPTIONS} from "@/constants/data";
@@ -11,6 +13,8 @@ import UpcomingSubscriptionCard from "@/components/UpcomingSubscriptionCard";
 import SubscriptionCard from "@/components/SubscriptionCard";
 import {useState} from "react";
 export default function App() {
+    const { user } = useUser();
+    const { signOut } = useAuth();
     const [expandedSubscriptionId, setExpandedSubscriptionId] = useState<string | null>(null);
 
   return (
@@ -23,7 +27,7 @@ export default function App() {
                           <View className="home-header">
                               <View className="home-user">
                                   <Image source={images.avatar} className="home-avatar" />
-                                  <Text className="home-user-name">{HOME_USER.name}</Text>
+                                  <Text className="home-user-name">{user?.primaryEmailAddress?.emailAddress ?? HOME_USER.name}</Text>
                               </View>
 
                               <Image source={icons.add} className="home-add-icon" />
@@ -76,6 +80,9 @@ export default function App() {
                       subscriptions yet.</Text>}
                   contentContainerClassName="pb-40"
               />
+          <Pressable onPress={() => signOut()}>
+              <Text>Déconnexion (test)</Text>
+          </Pressable>
 
       </SafeAreaView>
   );
